@@ -4,6 +4,11 @@ import MainLayOut from '../LayOuts/MainLayOut';
 import Home from '../Pages/Home/Home';
 import Products from '../Pages/Products/Products';
 import DeshBoard from '../Deshboard/DeshBoard';
+import Prodc from '../Pages/Products/prodc';
+import DeshboardProfile from '../Deshboard/DeshboardProfile';
+import DeshboardLayout from '../Deshboard/DeshboardLayout';
+import DeshboardEditprofile from '../Deshboard/DeshboardEditprofile';
+
 const myCreateRoute = createBrowserRouter([
     {
         path: '/',
@@ -19,8 +24,28 @@ const myCreateRoute = createBrowserRouter([
                 loader: () => fetch("https://dummyjson.com/products")
             },
             {
+                path: '/products/:id',
+                element: <Prodc></Prodc>,
+                loader: (object) => fetch(`https://dummyjson.com/products/${object.params.id}`),
+                // loader: (object) => (console.log(object))
+            },
+            {
                 path: '/dashBoard',
-                element: <DeshBoard></DeshBoard>
+                element: <DeshboardLayout></DeshboardLayout>,
+                children: [
+                    {
+                        path: '/dashBoard',
+                        element: <DeshBoard></DeshBoard>
+                    },
+                    {
+                        path: '/dashBoard/profile',
+                        element:<DeshboardProfile></DeshboardProfile>
+                    },
+                    {
+                        path: '/dashBoard/editprofile',
+                        element:<DeshboardEditprofile></DeshboardEditprofile>
+                    }
+                ]
             },
         ]
     }

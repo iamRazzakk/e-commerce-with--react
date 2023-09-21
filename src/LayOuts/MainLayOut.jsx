@@ -1,5 +1,5 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
 
 const MainLayOut = () => {
     return (
@@ -10,9 +10,30 @@ const MainLayOut = () => {
                 </div>
                 <nav className='py-2'>
                     <ul className='flex gap-6 '>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/products">products</a></li>
-                        <li><a href="/dashBoard">Dashboard</a></li>
+                        <NavLink
+                            to="/"
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-green-400 " : ""
+                            }
+                        >
+                            Home
+                        </NavLink>
+                        <NavLink
+                            to="/products"
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-green-400 rounded" : ""
+                            }
+                        >
+                            products
+                        </NavLink>
+                        <NavLink
+                            to="/dashBoard"
+                            className={({ isActive, isPending }) =>
+                                isPending ? "pending" : isActive ? "bg-green-400" : ""
+                            }
+                        >
+                            Dashboard
+                        </NavLink>
                     </ul>
                 </nav>
             </section>
